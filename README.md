@@ -13,7 +13,7 @@ This project solves the 1D diffusion equation using the Fast Fourier Transform (
 
 Below is a demo of the simulation showing the spread of infection, recovery, immunity, and vaccination.
 
-![Infection Diffusion Simulation](infection_simulation.gif)
+<img src="infection_simulation.gif" width="500"/>
 
 ## 📁 Files Included
 
