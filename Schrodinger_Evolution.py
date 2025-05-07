@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-2D Heat Diffusion Simulation
-This script simulates and visualizes the time evolution of heat diffusion
+2D Free-Particle Schrödinger Evolution Simulation
+This script simulates and visualizes the time evolution of a quantum wave packet
 in two dimensions, saving the animation as a GIF.
 """
 
@@ -9,17 +9,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-
-def run_heat_diffusion(
+def run_schrodinger_evolution(
     N=512,  # Number of grid points
     L=30.0,  # Domain size
     T=5.0,  # Total simulation time
     dt=0.05,  # Time step
-    alpha=0.2,  # Diffusion coefficient
-    sigma=1.0,  # Initial temperature distribution width
-    output_file='heat_diffusion.gif'  # Output GIF filename
+    sigma=0.5,  # Initial wave packet width
+    k0x=1.0,  # Initial x-momentum
+    k0y=0.0,  # Initial y-momentum
+    hbar=1.0,  # Reduced Planck constant
+    m=1.0,  # Particle mass
+    output_file='schrodinger_evolution.gif'  # Output GIF filename
 ):
-    """Run the heat diffusion simulation and save as GIF."""
+    """Run the Schrödinger evolution simulation and save as GIF."""
     # Grid setup
     dx = L / N
     x = np.linspace(-L/2, L/2, N, endpoint=False)
@@ -32,15 +34,10 @@ def run_heat_diffusion(
     KX, KY = np.meshgrid(kx, ky, indexing='ij')
     k_squared = KX**2 + KY**2
 
-    # Initial conditions: Four Gaussian hotspots
-    u0 = (
-        np.exp(-((X - 2)**2 + (Y - 2)**2) / (2 * sigma**2)) +
-        np.exp(-((X + 2)**2 + (Y + 2)**2) / (2 * sigma**2)) +
-        np.exp(-((X - 2)**2 + (Y + 2)**2) / (2 * sigma**2)) +
-        np.exp(-((X + 2)**2 + (Y - 2)**2) / (2 * sigma**2))
-    )
+    # Initial conditions
+    u0 = np.exp(-(X**2 + Y**2) / (2 * sigma**2)) * np.exp(1j * (k0x * X + k0y * Y))
     u_hat = np.fft.fftn(u0)
-    time_operator = np.exp(-alpha * k_squared * dt)
+    time_operator = np.exp(-1j * hbar * k_squared * dt / (2 * m))
 
     # Total steps
     steps = int(T / dt)
@@ -53,17 +50,18 @@ def run_heat_diffusion(
     ax.set_ylabel("y [m]")
 
     # Initial plot
-    u = np.real(np.fft.ifftn(u_hat))
+    u = np.fft.ifftn(u_hat)
+    density = np.abs(u)**2
     im = ax.imshow(
-        u,
+        density,
         extent=[-L/2, L/2, -L/2, L/2],
         origin='lower',
-        cmap='hot',
+        cmap='viridis',
         vmin=0,
-        vmax=1
+        vmax=0.1
     )
     cbar = fig.colorbar(im, ax=ax)
-    cbar.set_label("Temperature [a.u.]")
+    cbar.set_label("Probability Density [a.u.]")
 
     def update(frame):
         """Update function for animation."""
@@ -73,11 +71,12 @@ def run_heat_diffusion(
         u_hat *= time_operator
         
         # Transform back to real space
-        u = np.real(np.fft.ifftn(u_hat))
+        u = np.fft.ifftn(u_hat)
+        density = np.abs(u)**2
         
         # Update plot
-        im.set_array(u)
-        ax.set_title(f"2D Heat Diffusion (t = {frame * dt:.2f} s)")
+        im.set_array(density)
+        ax.set_title(f"2D Free-Particle Schrödinger Evolution (t = {frame * dt:.2f} s)")
         
         return [im]
 
@@ -96,7 +95,7 @@ def run_heat_diffusion(
 
 
 if __name__ == '__main__':
-    run_heat_diffusion(
+    run_schrodinger_evolution(
         T=5.0,  # 5 seconds of simulation time
-        output_file='heat_diffusion.gif'
+        output_file='schrodinger_evolution.gif'
     )

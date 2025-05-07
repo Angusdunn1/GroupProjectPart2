@@ -2,7 +2,7 @@
 # takes 15sec to appear for total_time=1000
 import matplotlib.pyplot as plt
 import numpy as np
-from simmodule import simulate
+from Simmodule import simulate
 
 def live_demo(**sim_kwargs):
     # run simulation and grab full history

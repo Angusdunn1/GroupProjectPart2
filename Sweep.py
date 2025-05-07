@@ -2,7 +2,7 @@
 # takes 5min to appear for total_time=60
 import numpy as np
 import matplotlib.pyplot as plt
-from simmodule import simulate
+from Simmodule import simulate
 
 # ── parameters ──────────────────────────────────────────────────────
 betas = np.linspace(0.001, 0.01, 10)
