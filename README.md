@@ -1,29 +1,23 @@
 # Numerical Methods Project - Part 2
 
-This repository contains simulations of various physical phenomena using numerical methods. Each simulation is implemented in Python and includes an animated visualisation saved as a GIF.
+This repository contains simulations of various physical systems using numerical methods.
+
+## Disease Spread Simulation
+
+![Disease Spread Simulation](infection_simulation.gif)
+
+This simulation demonstrates the spread of disease through a population with the following features:
+- Agent-based movement with realistic collision detection
+- Infection spread through proximity and contact
+- Recovery and temporary immunity
+- Vaccination station with probability-based vaccination
+- Real-time visualisation of infection and vaccination percentages
+
+The simulation shows how diseases can spread through a population and how vaccination can help control the outbreak.
 
 ## Simulations
 
-### 1. Disease Spread Simulation
-![Disease Spread](disease_spread.gif)
-
-This simulation models the spread of a disease through a population of agents in a 2D space. Key features include:
-- Agent-based movement with linear trajectories
-- Infection spread through proximity
-- Vaccination station where agents can get vaccinated
-- Temporary immunity after recovery
-- Real-time visualisation of:
-  - Agent states (susceptible, infected, immune, vaccinated)
-  - Infection and vaccination percentages over time
-
-Parameters can be adjusted to study:
-- Disease transmissibility
-- Recovery time
-- Vaccination effectiveness
-- Population density
-- Agent movement patterns
-
-### 2. Schrödinger Evolution
+### 1. Schrödinger Evolution
 ![Schrödinger Evolution](schrodinger_evolution.gif)
 
 This simulation demonstrates the time evolution of a quantum wave packet in two dimensions. Features include:
@@ -38,7 +32,7 @@ The simulation helps visualise:
 - Conservation of probability
 - Phase evolution
 
-### 3. Heat Diffusion
+### 2. Heat Diffusion
 ![Heat Diffusion](heat_diffusion.gif)
 
 This simulation shows the diffusion of heat in a 2D medium. Features include:
@@ -58,8 +52,8 @@ The simulation demonstrates:
 Each simulation can be run using its respective Python script:
 
 ```bash
-# Disease spread simulation
-python example.py
+# Infection spread simulation
+python Infection_Spread.py
 
 # Schrödinger evolution
 python Schrodinger_Evolution.py
