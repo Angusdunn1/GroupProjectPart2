@@ -5,7 +5,7 @@ This repository contains simulations of various physical systems using numerical
 ## Simulations
 
 ### 1. Disease Spread Simulation
-![Disease Spread](infection_simulation.gif)
+![Disease Spread](GIFs/infection_simulation.gif)
 
 This simulation models the spread of a disease through a population of agents in a 2D space. Key features include:
 - Agent-based movement with linear trajectories and wall collisions
@@ -24,7 +24,7 @@ Parameters can be adjusted to study:
 - Agent movement patterns
 
 ### 2. Schrödinger Evolution
-![Schrödinger Evolution](schrodinger_evolution.gif)
+![Schrödinger Evolution](GIFs/schrodinger_evolution.gif)
 
 This simulation demonstrates the time evolution of a quantum wave packet in two dimensions. Features include:
 - Free-particle Schrödinger equation solution using spectral methods
@@ -39,7 +39,7 @@ The simulation helps visualise:
 - Phase evolution
 
 ### 3. Heat Diffusion
-![Heat Diffusion](heat_diffusion.gif)
+![Heat Diffusion](GIFs/heat_diffusion.gif)
 
 This simulation shows the diffusion of heat in a 2D medium. Features include:
 - Four initial temperature hotspots
@@ -52,6 +52,21 @@ The simulation demonstrates:
 - Temperature equilibration
 - Diffusion patterns
 - Conservation of energy
+
+### 4. Poisson Equation
+![Poisson Solution](GIFs/poisson_solution.gif)
+
+This simulation demonstrates the solution of the Poisson equation with moving source terms. Features include:
+- Dynamic source terms that move in a periodic pattern
+- Solution using spectral methods
+- Potential field visualisation
+- Time evolution of the electrostatic potential
+
+The simulation helps visualise:
+- Electrostatic potential distribution
+- Source-sink dynamics
+- Field propagation
+- Boundary effects
 
 ## Running the Simulations
 
@@ -66,6 +81,9 @@ python Schrodinger_Evolution.py
 
 # Heat diffusion
 python Heat_Diffusion.py
+
+# Poisson equation
+python poissonSimulation.py
 ```
 
 ## Dependencies
@@ -94,6 +112,12 @@ The simulations require the following Python packages:
 - Uses spectral methods for efficient computation
 - Implements periodic boundary conditions
 - Visualises temperature distribution
+
+### Poisson Equation
+- Solves the Poisson equation with moving sources
+- Uses Fast Fourier Transform for spectral methods
+- Implements periodic boundary conditions
+- Visualises electrostatic potential distribution
 
 ## Customisation
 

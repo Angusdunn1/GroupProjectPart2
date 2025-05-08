@@ -1,7 +1,7 @@
 #Importing modules
 import numpy as np
 import matplotlib
-matplotlib.use('TkAgg')
+matplotlib.use('Agg')  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
@@ -65,6 +65,8 @@ def update(frame):
 
     return [im]
 
-ani = FuncAnimation(fig, update, frames=steps, interval=100, repeat= False)
+ani = FuncAnimation(fig, update, frames=steps, interval=100, repeat=False)
 
-plt.show()
+# Save the animation as a GIF
+ani.save('poisson_solution.gif', writer='pillow', fps=20)
+plt.close()
