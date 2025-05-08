@@ -4,6 +4,10 @@ from scipy.ndimage import map_coordinates
 import imageio.v2 as imageio  # for GIF export
 from io import BytesIO        # to capture frame from plt
 
+"""
+This file is used solely to make the gif.
+"""
+
 def run_agent_with_temporary_immunity(
     original_N=200,
     domain_size=2.0,

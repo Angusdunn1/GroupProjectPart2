@@ -7,8 +7,8 @@ from scipy.ndimage import map_coordinates
 Agent based Fast Fourier Transfer simulation of virus transmission.
 This module defines the nature of spread with parameters given below.
 
-Simulation visualisation is performed in PlotInfection.py
-Results/plots are made in Sweep.py
+-Simulation visualisation is performed in PlotInfection.py
+-Results/plots are made in Sweep.py
 
 The provided code uses Fast Fourier Transfer to simulate viral spread through a 
 diffusion model. The simulation is ran in two dimensions. Agents (dots) move in 

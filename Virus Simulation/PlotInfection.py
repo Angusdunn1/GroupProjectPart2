@@ -9,6 +9,7 @@ from Simmodule import simulate
 Requires Simmodule.py
 Produces a live visualisation of the infection spread
 with a plot of % infected over time.
+It can take 15sec for the simulation to appear if total_time=1000.
 """
 
 def live_demo(**sim_kwargs):
