@@ -12,7 +12,6 @@ This script systematically varies key parameters to explore their impact on outb
         Finds burden (% pop. infected * time) and peak infection time.
     β vs mobility (move_scale):
         Finds maximum percent infected within a total_time. 
-
 """
 
 # PARAMETERS
