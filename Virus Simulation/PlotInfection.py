@@ -1,17 +1,23 @@
+#!/usr/bin/env python3
 # plot_infection.py
 # takes 15sec to appear for total_time=1000
 import matplotlib.pyplot as plt
 import numpy as np
 from Simmodule import simulate
 
+"""
+Requires Simmodule.py
+Produces a live visualisation of the infection spread
+with a plot of % infected over time.
+"""
+
 def live_demo(**sim_kwargs):
     # run simulation and grab full history
     (times, frac_inf, frac_vac,
      pos_hist, inf_hist, vac_hist, imm_hist) = simulate(
-        **sim_kwargs, record_history=True
+         **sim_kwargs, record_history=True
     )
 
-    # ── figure set-up ───────────────────────────────────────────────
     plt.ion()
     fig, (ax_scat, ax_line) = plt.subplots(2, 1, figsize=(6, 9))
 
@@ -39,19 +45,19 @@ def live_demo(**sim_kwargs):
     ax_line.legend()
     ax_line.grid(True)
 
-    # ── animation loop ─────────────────────────────────────────────
+    # ANIMATION
     for k, t in enumerate(times):
-        pos = pos_hist[k]
-        infected = inf_hist[k]
+        pos        = pos_hist[k]
+        infected   = inf_hist[k]
         vaccinated = vac_hist[k]
-        immune = imm_hist[k]
+        immune     = imm_hist[k]
 
         colors = np.zeros((len(pos), 3))
         susceptible = (~infected) & (~immune) & (~vaccinated)
-        colors[susceptible] = [0, 0, 1]  # blue
-        colors[infected] = [1, 0, 0]  # red
-        colors[immune & ~vaccinated] = [1, 0.5, 0]  # orange
-        colors[vaccinated] = [0, 1, 0]  # green
+        colors[susceptible]              = [0, 0, 1]     # blue
+        colors[infected]                 = [1, 0, 0]     # red
+        colors[immune & ~vaccinated]     = [1, 0.5, 0]   # orange
+        colors[vaccinated]               = [0, 1, 0]     # green
 
         scat.set_offsets(pos)
         scat.set_facecolors(colors)
@@ -69,22 +75,22 @@ def live_demo(**sim_kwargs):
 
 if __name__ == "__main__":
     live_demo(
-        original_N=200,
-        domain_size=2.0,
-        grid_size=64,
-        D=0.1,
-        dt=0.01,
-        total_time=1000.0,
-        move_scale=0.0001,
-        plot_interval=50,
-        recovery_time=30.0,
-        recovery_spread=0.2,
-        immunity_multiplier=1.0,
-        station_rel=(0.9, 0.1),
-        station_radius=0.1,
-        vacc_prob=0.05,
-        beta=0.005,
-        beta_spread=0.2,
-        min_seg_steps=50,
-        max_seg_steps=600
+        original_N    = 200,
+        domain_size   = 2.0,
+        grid_size     = 64,
+        D             = 0.1,
+        dt            = 0.01,
+        total_time    = 1000.0,
+        move_scale    = 0.0001,
+        plot_interval = 50,
+        recovery_time = 30.0,
+        recovery_spread = 0.2,
+        immunity_multiplier = 1.0,
+        station_rel   = (0.9, 0.1),
+        station_radius= 0.1,
+        vacc_prob     = 0.05,
+        beta          = 0.005,
+        beta_spread   = 0.2,
+        min_seg_steps = 50,
+        max_seg_steps = 600
     )
